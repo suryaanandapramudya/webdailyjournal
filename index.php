@@ -68,7 +68,7 @@ include "koneksi.php"
               <a class="nav-link" href="#article">Article</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#gallery">Gallery</a>
+              <a class="nav-link" href="gallery.php">Gallery</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.php" target="_blank">Login</a>
@@ -153,18 +153,22 @@ include "koneksi.php"
         <h1 class="fw-bold display-4 pb-3">Gallery</h1>
         <div id="carouselExample" class="carousel slide">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="img/gal1.jpg" class="d-block w-100" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="img/gal2.jpg" class="d-block w-100" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="img/gal4.jpg" class="d-block w-100" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="img/gal5.jpg" class="d-block w-100" alt="..." />
-            </div>
+            <?php
+            $sql_gallery = "SELECT * FROM gallery ORDER BY tanggal DESC";
+            $hasil_gallery = $conn->query($sql_gallery);
+            $is_active = true;
+
+            while ($row_gallery = $hasil_gallery->fetch_assoc()) {
+                $active_class = $is_active ? 'active' : '';
+                $is_active = false;
+            ?>
+              <div class="carousel-item <?= $active_class ?>">
+                <img src="img/<?= $row_gallery['gambar'] ?>" class="d-block w-100" alt="<?= $row_gallery['judul'] ?>" />
+              </div>
+            <?php
+            }
+            ?>
+
           </div>
           <button
             class="carousel-control-prev"
@@ -188,6 +192,86 @@ include "koneksi.php"
       </div>
     </section>
     <!-- GALLERY END -->
+     <section id="schedule" class="text-center p-5">
+    <div class="container">
+      <h1 class="fw-bold display-4 pb-3">schedule</h1>
+      <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">SENIN</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Etika Profesi<br>16.20-18.00 | H.4.4
+              </li>
+              <li class="list-group-item">
+                Sistem Operasi<br>18.30-21.00 | H.4.8
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">SELASA</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Pendidikan Kewarganegaraan<br>12.30-13.10 | Kulino
+              </li>
+              <li class="list-group-item">
+                Probabilitas dan Statistik<br>15.30-18.00 | H.4.9
+              </li>
+              <li class="list-group-item">
+                Kecerdasan Buatan<br>18.30-21.00 | H.4.11
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">RABU</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Manajemen Proyek Teknologi Informasi<br>15.30-18.00 | H.4.6
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">KAMIS</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Bahasa Indonesia<br>12.30-14.10 | Kulino
+              </li>
+              <li class="list-group-item">
+                Pendidikan Agama Islam<br>16.20-18.00 | Kulino
+              </li>
+              <li class="list-group-item">
+                Penambangan Data<br>18.30-21.00 | H.4.9
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">JUMAT</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Pemrograman Web Lanjut<br>10.20-12.00 | D.2.K
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-danger text-white">SABTU</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">FREE</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <!-- FOOTER START -->
     <footer class="text-center p-5">
       <div>
