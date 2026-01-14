@@ -68,7 +68,7 @@ include "koneksi.php"
               <a class="nav-link" href="#article">Article</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gallery.php">Gallery</a>
+              <a class="nav-link" href="#gallery">Gallery</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.php" target="_blank">Login</a>
